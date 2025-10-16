@@ -2,7 +2,7 @@ import sqlite3
 from pathlib import Path
 from typing import Any, Iterable, List, Optional
 
-DB_PATH = Path("database_licitacoes_hospitais.db")
+DB_PATH = Path("database_licitacoes.db")
 OUTPUT_DIR = Path("relatorios_licitacoes")
 
 LICITACAO_FIELDS: List[tuple[str, str]] = [
@@ -187,7 +187,7 @@ def build_arquivos_section(arquivos: List[sqlite3.Row]) -> str:
             conversao = "Não processado"
         lines.append(f"| {seq} | {titulo} | {status} | [link]({link}) | {conversao} |")
     lines.append("")
-    lines.append("> *Aviso sobre anexos: As listas e o conteúdo textual abaixo foram obtidos por conversão automática dos arquivos originais (principalmente PDFs). Podem existir diferenças em relação aos documentos oficiais; utilize sempre as versões disponíveis no PNCP para conferência.*")
+    lines.append("> *Aviso sobre anexos: As listas e o conteúdo textual abaixo foram obtidos por conversão automática dos arquivos originais através da ferramenta Markitdown. Podem existir diferenças em relação ao conteúdo dos documentos oficiais, utilize sempre as versões disponíveis no PNCP para conferência.*")
     lines.append("")
 
     for arq in arquivos:
@@ -219,6 +219,8 @@ def build_pncp_link(lic: sqlite3.Row) -> Optional[str]:
     item_url = lic["item_url"]
     if not item_url:
         return None
+    # Ajusta rotas antigas para o novo segmento esperado.
+    item_url = item_url.replace("/compras/", "/editais/")
     if item_url.startswith("http://") or item_url.startswith("https://"):
         return item_url
     base = "https://pncp.gov.br/app"

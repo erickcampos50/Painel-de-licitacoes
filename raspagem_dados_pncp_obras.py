@@ -20,13 +20,13 @@ SEARCH_URL = "https://pncp.gov.br/api/search/"
 BASE_PNCP = "https://pncp.gov.br/api/pncp/v1/orgaos/"
 TIPOS_DOCUMENTO = ["edital"]  # ["edital","ata"]
 ORDENACAO = ["data"]  # ["data","-data","relevancia"]
-PAGES = list(range(1, 2))
-TAM_PAGINA = 4
+PAGES = list(range(1, 21))
+TAM_PAGINA = 500
 ESFERA = ""
 QUERY = ""
 MODALIDADE = ""
 MAX_CONN = 5
-DB_PATH = "database_licitacoes_2.db"
+DB_PATH = "database_licitacoes.db"
 HTTP_TIMEOUT = aiohttp.ClientTimeout(total=60)
 REQUEST_DELAY_MIN = 0.1
 REQUEST_DELAY_MAX = 0.4
