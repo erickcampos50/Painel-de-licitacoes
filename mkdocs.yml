@@ -1,0 +1,38 @@
+site_name: Painel de Licitacoes
+site_description: Consulta interativa dos relatorios gerados automaticamente.
+site_author: Equipe Painel de Licitacoes
+
+docs_dir: relatorios_licitacoes
+
+theme:
+  name: material
+  custom_dir: overrides
+  language: pt-BR
+  features:
+    - navigation.instant
+    - navigation.sections
+    - navigation.tracking
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+plugins:
+  - search:
+      lang: pt
+  - tags
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - tables
+  - admonition
+  - attr_list
+
+extra:
+  generator: false
+
+

@@ -27,6 +27,17 @@ O ambiente virtual criado em `.venv` nao deve ser versionado.
 
 O script utiliza `asyncio` e `aiohttp` para fazer requisicoes em paralelo respeitando pausas aleatorias configuraveis, e tenta baixar e inspecionar anexos dos editais. A biblioteca `markitdown` eh usada para tentar converter anexos para Markdown.
 
+## Visualizacao dos relatorios com MkDocs
+
+Com os arquivos Markdown em `relatorios_licitacoes/`, e possivel disponibilizar uma interface de consulta usando MkDocs:
+
+1. Gere os relatorios atualizados: `python gerar_relatorios_licitacoes.py`.
+2. Sirva o site localmente: `mkdocs serve`.
+3. Acesse `http://127.0.0.1:8000/` para buscar, filtrar e navegar pelos relatorios.
+4. A Home traz a lista consolidada de anexos com busca integrada; a pagina *Arquivos disponiveis* oferece a mesma tabela com links internos e downloads.
+
+Os pacotes `mkdocs` e `mkdocs-material` estao listados em `requirements.txt`. Reinstale as dependencias se ja tiver configurado o ambiente anteriormente.
+
 ## Conversao de documentos (PowerShell)
 
 O arquivo `conversor_para_markdown.py` contem um script PowerShell pensado para Windows. Ele faz leitura da tabela `arquivos`, baixa anexos pendentes e salva o resultado convertido em Markdown na tabela `arquivo_markdown`. Para usa-lo:

@@ -1,0 +1,25 @@
+/* Wide layout: remove sidebars and expand content width */
+.md-sidebar--primary,
+.md-sidebar--secondary {
+  display: none;
+}
+
+/* Allow the main wrapper to span full width */
+.md-main__inner {
+  max-width: none;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Optional max width for readability */
+.md-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Ensure the footer aligns with the new content width */
+.md-footer {
+  margin-left: 0;
+  margin-right: 0;
+}

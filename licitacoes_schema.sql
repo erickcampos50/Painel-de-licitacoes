@@ -1,4 +1,4 @@
-CREATE TABLE licitacoes (
+CREATE TABLE IF NOT EXISTS licitacoes (
     id TEXT PRIMARY KEY,
     "index" TEXT,
     doc_type TEXT,
@@ -42,5 +42,43 @@ CREATE TABLE licitacoes (
     tipo_id TEXT,
     tipo_nome TEXT,
     tipo_contrato_id TEXT,
-    tipo_contrato_nome TEXT
-)
+    tipo_contrato_nome TEXT,
+    fonte_orcamentaria_id TEXT,
+    fonte_orcamentaria TEXT,
+    fonte_orcamentaria_nome TEXT,
+    exigencia_conteudo_nacional BOOLEAN,
+    tipo_margem_preferencia TEXT,
+    tipo_margem_preferencia_id TEXT,
+    tipo_margem_preferencia_nome TEXT
+);
+
+CREATE INDEX IF NOT EXISTS idx_licitacoes_controle
+  ON licitacoes(numero_controle_pncp);
+
+CREATE TABLE IF NOT EXISTS itens (
+    id_licitacao TEXT,
+    numeroItem INTEGER,
+    descricao TEXT,
+    valor_total REAL,
+    PRIMARY KEY (id_licitacao, numeroItem)
+);
+
+CREATE TABLE IF NOT EXISTS arquivos (
+    id_licitacao TEXT,
+    sequencial_documento INTEGER,
+    url TEXT,
+    titulo TEXT,
+    status_ativo BOOLEAN,
+    PRIMARY KEY (id_licitacao, sequencial_documento)
+);
+
+CREATE TABLE IF NOT EXISTS arquivo_markdown (
+    id_licitacao TEXT,
+    sequencial_documento INTEGER,
+    nome_arquivo TEXT,
+    conteudo_markdown TEXT,
+    convertido_com_sucesso BOOLEAN,
+    erro TEXT,
+    timestamp TEXT,
+    PRIMARY KEY(id_licitacao, sequencial_documento)
+);
